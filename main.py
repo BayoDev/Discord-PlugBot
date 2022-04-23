@@ -1,6 +1,7 @@
-import src.config_handler as ch
+import utils.config_handler as ch
+import utils.server_handler as sh
 import discord
-from discord.ext import commands,tasks
+from discord.ext import commands
 import logging
 import os
 
@@ -12,6 +13,13 @@ def get_plugins() -> list:
     return plugins
 
 def main():
+    
+    #
+    # Folders config
+    #
+
+    if not os.path.isdir('data/'):
+        os.mkdir('data/')
 
     #
     # Setup Config
@@ -23,7 +31,13 @@ def main():
 
     LOG_ERROR = True if conf.get_data('OPTIONS','LOG_ERROR') == 'True' else False
 
-    #bot.command()(sus)
+    #
+    # Setup server_handler
+    #
+
+    os.chdir('utils/')
+    sh.setup()
+    os.chdir('..')
 
     #
     # Setup logging
@@ -57,5 +71,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-    
