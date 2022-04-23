@@ -8,6 +8,8 @@ class Config:
         if not os.path.isfile(path):
             with open(path,'w') as file:
                 self.__standard_config().write(file)
+                print('Config file created, set your discord bot token to continue')
+                exit()
         self._parser = cp.ConfigParser()
         self._parser.read(path)
 

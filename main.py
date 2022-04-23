@@ -21,6 +21,17 @@ def main():
     if not os.path.isdir('data/'):
         os.mkdir('data/')
 
+    if not os.path.isdir('plugins/'):
+        os.mkdir('plugins/')
+
+    #
+    # Setup server_handler
+    #
+
+    os.chdir('utils/')
+    sh.setup()
+    os.chdir('..')
+
     #
     # Setup Config
     #
@@ -30,14 +41,6 @@ def main():
     bot = commands.Bot(command_prefix=conf.get_data('OPTIONS','PREFIX'),intents=intents)
 
     LOG_ERROR = True if conf.get_data('OPTIONS','LOG_ERROR') == 'True' else False
-
-    #
-    # Setup server_handler
-    #
-
-    os.chdir('utils/')
-    sh.setup()
-    os.chdir('..')
 
     #
     # Setup logging
