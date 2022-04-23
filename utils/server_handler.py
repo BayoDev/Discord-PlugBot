@@ -65,6 +65,6 @@ def setup():
     global workPath
     workPath = os.getcwd()
     if not os.path.isfile('../data/database.db'):
-        with open('../data/database.db')as file:
+        with open('../data/database.db', 'w')as file:
             pass
     return
