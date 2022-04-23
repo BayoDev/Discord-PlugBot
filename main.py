@@ -46,7 +46,7 @@ def main():
     # Setup logging
     #
 
-    logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+    logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(pathname)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
     #
     # Import plugins
