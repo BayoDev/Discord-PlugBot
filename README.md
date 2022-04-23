@@ -57,6 +57,16 @@ The plugins must be a folder inside the 'plugins' folder and it must contain a f
 
 The use of [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs) are strongy recommended
 
-Other than that you can as many files as you want inside the folder.
+Other than that you can add as many files as you want inside the folder.
 
-When the setup function is called the working directory is set to the local plugin folder. But when the events or commands are called the working directory will be the one containing the 'main.py' file
+When the setup function is called the working directory is set to the local plugin folder. But when the events or commands are called the working directory will be the one containing the 'main.py' file so it is reccomended to store the path in the setup function.
+
+The bot includes some utilities that can be used by the plugins.
+
+### Storing data
+
+The bot offers a common database that can be used by the plugins.
+
+It is located in the data/ folder under the name 'database.db' the database can be accessed using the 'sqlite3' package or by using the prebuilt functions importing the function in 'utils/server_handler.py'.
+
+It's strongly reccomended to create tables with names that are tied to your plugin to avoid conflicting names.
