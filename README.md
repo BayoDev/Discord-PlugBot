@@ -54,7 +54,8 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 
 1. [Good practices](#dev_gp)
 2. [Storing data](#dev_sd)
-3. [Included utilities](#dev_util)
+3. [Handling imports](#dev_imp)
+4. [Included utilities](#dev_util)
 
 The plugins will be integrated using the official ['load_extension'](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) function of discord py.
 
@@ -83,6 +84,12 @@ It is located in the data/ folder under the name 'database.db' the database can 
 
 It's strongly reccomended to create tables with names that are tied to your plugin to avoid conflicting names.
 
+<a id='dev_imp'></a>
+
+### Handling imports
+
+
+
 <a id='dev_utils'></a>
 
 ### Included utilities
@@ -98,14 +105,17 @@ Functions:
 def query(query: str) -> list
 
 # Returns 'True' if table exists else 'False'
-def table_exists(table_name) -> bool
+def table_exists(table_name: str) -> bool
 ```
 
 <a id='examples'></a>
 ## Examples
 
 <a id='wd_ex'></a>
- Example of working directory handling:
+
+### Directory Handling
+
+>Example of working directory handling:
 
 ```python
 import os
@@ -128,3 +138,9 @@ def setup(bot):
     localDir = os.getcwd()
     bot.add_command(example)
 ```
+
+
+<a id='cogs_ex'></a>
+
+### Cogs
+>Example of a simple plugin that uses Cogs can be found [here](https://github.com/BayoDev/CuteGifs-PlugBot)
