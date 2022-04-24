@@ -68,7 +68,7 @@ The bot includes some utilities that can be used by the plugins.
 
 ### Good practices
 
-1.
+1. The scope and functionality of your plugin should be as narrow as possible to be aligned with the plugins-based design of the bot.
 
 2. Use [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs)
 
