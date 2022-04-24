@@ -41,25 +41,6 @@ def table_exists(table_name) -> bool:
 
     return True
 
-def create_table(table_struct) -> bool:
-    global workPath
-    global lastPath
-    lastPath = os.getcwd()
-
-    os.chdir(workPath)
-
-    con = sql.connect('../data/database.db')
-    cur = con.cursor()
-    try:
-        cur.execute(table_struct)
-    except:
-        return False
-    con.commit()
-    con.close()
-    
-    os.chdir(lastPath)
-    return True
-
 
 def setup():
     global workPath
