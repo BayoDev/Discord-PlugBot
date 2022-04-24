@@ -73,6 +73,8 @@ The bot includes some utilities that can be used by the plugins.
 
 3. If you use the [shared database](#storing_data) make sure to use names tied to the name of your plugin to avoid conflicting names
 
+4. Logging is strongly reccomended using the ['logging'](https://docs.python.org/3/library/logging.html) python package 
+
 
 <a id='dev_sd'></a>
 
@@ -88,7 +90,7 @@ It's strongly reccomended to create tables with names that are tied to your plug
 
 ### Handling imports
 
-
+You should instruct your users on how to import the required packages.
 
 <a id='dev_utils'></a>
 
