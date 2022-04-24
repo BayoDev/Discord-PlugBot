@@ -52,17 +52,17 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 <a id='dev'></a>
 ## Development guide
 
+1. [Good practices](#dev_gp)
+2. [Storing data](#dev_sd)
+3. [Included utilities](#dev_util)
+
 The plugins will be integrated using the official ['load_extension'](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) function of discord py.
 
 The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a setup function that takes 'bot' as a parameter. Check [this](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) for official docs.
 
-The use of [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs) are strongy recommended
-
-Other than that you can add as many files as you want inside the folder.
-
-When the setup function is called the working directory is set to the local plugin folder. But when the events or commands are called the working directory will be the one containing the 'main.py' file so it is reccomended to store the path in the setup function.
-
 The bot includes some utilities that can be used by the plugins.
+
+<a id='dev_gp'></a>
 
 ### Good practices
 
@@ -70,16 +70,36 @@ The bot includes some utilities that can be used by the plugins.
 
 2. Save the current directory in the setup function, when commands/tasks/events are called the value of the working directory isn't guaranteed so it is good practice to change the working directory every time a function is called. [EXAMPLE](#wd_ex)
 
-3. If you use the [shared database](#storing_data)
+3. If you use the [shared database](#storing_data) make sure to use names tied to the name of your plugin to avoid conflicting names
 
-<a id='storing_data'></a>
+
+<a id='dev_sd'></a>
+
 ### Storing data
 
-The bot offers a common database that can be used by the plugins.
+The bot offers a shared database that can be used by the plugins.
 
-It is located in the data/ folder under the name 'database.db' the database can be accessed using the 'sqlite3' package or by using the prebuilt functions importing the function in 'utils/server_handler.py'.
+It is located in the data/ folder under the name 'database.db' the database can be accessed using the 'sqlite3' package or by using the prebuilt functions  of 'utils/server_handler.py'.
 
 It's strongly reccomended to create tables with names that are tied to your plugin to avoid conflicting names.
+
+<a id='dev_utils'></a>
+
+### Included utilities
+
+The bot offers some utilities that plugins developers can use. Those utilities are located in the 'utils' folder
+
+#### server_handler
+
+Functions:
+
+```python
+# Run a query and get the response in a list format
+def query(query: str) -> list
+
+# Returns 'True' if table exists else 'False'
+def table_exists(table_name) -> bool
+```
 
 <a id='examples'></a>
 ## Examples
