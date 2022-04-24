@@ -56,6 +56,7 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 2. [Storing data](#dev_sd)
 3. [Handling imports](#dev_imp)
 4. [Included utilities](#dev_util)
+5. [Publishing the plugin](#dev_pub)
 
 The plugins will be integrated using the official ['load_extension'](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) function of discord py.
 
@@ -67,13 +68,15 @@ The bot includes some utilities that can be used by the plugins.
 
 ### Good practices
 
-1. Use [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs)
+1.
 
-2. Save the current directory in the setup function, when commands/tasks/events are called the value of the working directory isn't guaranteed so it is good practice to change the working directory every time a function is called. [EXAMPLE](#wd_ex)
+2. Use [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs)
 
-3. If you use the [shared database](#storing_data) make sure to use names tied to the name of your plugin to avoid conflicting names
+3. Save the current directory in the setup function, when commands/tasks/events are called the value of the working directory isn't guaranteed so it is good practice to change the working directory every time a function is called. [EXAMPLE](#wd_ex)
 
-4. Logging is strongly reccomended using the ['logging'](https://docs.python.org/3/library/logging.html) python package 
+4. If you use the [shared database](#storing_data) make sure to use names tied to the name of your plugin to avoid conflicting names
+
+5. Logging is strongly reccomended using the ['logging'](https://docs.python.org/3/library/logging.html) python package 
 
 
 <a id='dev_sd'></a>
@@ -109,6 +112,12 @@ def query(query: str) -> list
 # Returns 'True' if table exists else 'False'
 def table_exists(table_name: str) -> bool
 ```
+
+<a id='dev_pub'></a>
+
+### Publising the plugin
+
+Hosting your plugin on GitHub is highly reccomended. This allows better discoverability for your plugin and ease of use for the users. If you host your plugin on GitHub make sure to add the **'plugbot-plugin'** tag to the repository.
 
 <a id='examples'></a>
 ## Examples
