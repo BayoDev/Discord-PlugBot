@@ -8,6 +8,7 @@
  2. [Usage](#usage)
  3. [Add plugins](#add_plugins)
  4. [Development guide](#dev)
+ 5. [Examples](#examples)
 
 <a id='install'></a>
 ## Installation
@@ -63,6 +64,15 @@ When the setup function is called the working directory is set to the local plug
 
 The bot includes some utilities that can be used by the plugins.
 
+### Good practices
+
+1. Use [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs)
+
+2. Save the current directory in the setup function, when commands/tasks/events are called the value of the working directory isn't guaranteed so it is good practice to change the working directory every time a function is called. [EXAMPLE](#wd_ex)
+
+3. If you use the [shared database](#storing_data)
+
+<a id='storing_data'></a>
 ### Storing data
 
 The bot offers a common database that can be used by the plugins.
@@ -70,3 +80,31 @@ The bot offers a common database that can be used by the plugins.
 It is located in the data/ folder under the name 'database.db' the database can be accessed using the 'sqlite3' package or by using the prebuilt functions importing the function in 'utils/server_handler.py'.
 
 It's strongly reccomended to create tables with names that are tied to your plugin to avoid conflicting names.
+
+<a id='examples'></a>
+## Examples
+
+<a id='wd_ex'></a>
+ Example of working directory handling:
+
+```python
+import os
+import discord
+from discord.ext import commands
+
+localDir: str
+
+@commands.command()
+async def example(ctx):
+    global localDir
+    os.chdir(localDir)
+
+    ...Your code here...
+
+    return
+
+def setup(bot):
+    global localDir
+    localDir = os.getcwd()
+    bot.add_command(example)
+```
