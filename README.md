@@ -58,7 +58,9 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 4. [Included utilities](#dev_util)
 5. [Publishing the plugin](#dev_pub)
 
-The plugins will be integrated using the official ['load_extension'](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) function of discord py.
+**PLUGINS MUST BE DEVELOPED USING NEXTCORD**
+
+The plugins will be integrated using the official ['load_extension'](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) function of nextcord.
 
 The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a setup function that takes 'bot' as a parameter. Check [this](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) for official docs.
 
@@ -95,7 +97,7 @@ It's strongly reccomended to create tables with names that are tied to your plug
 
 You should instruct your users on how to import the required packages.
 
-<a id='dev_utils'></a>
+<a id='dev_util'></a>
 
 ### Included utilities
 
