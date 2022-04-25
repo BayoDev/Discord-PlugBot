@@ -58,9 +58,9 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 4. [Included utilities](#dev_util)
 5. [Publishing the plugin](#dev_pub)
 
-The plugins will be integrated using the official ['load_extension'](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) function of discord py.
+The plugins will be integrated using the official ['load_extension'](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) function of discord py.
 
-The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a setup function that takes 'bot' as a parameter. Check [this](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=load_extension#discord.ext.commands.Bot.load_extension) for official docs.
+The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a setup function that takes 'bot' as a parameter. Check [this](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) for official docs.
 
 The bot includes some utilities that can be used by the plugins.
 
@@ -70,7 +70,7 @@ The bot includes some utilities that can be used by the plugins.
 
 1. The scope and functionality of your plugin should be as narrow as possible to be aligned with the plugins-based design of the bot.
 
-2. Use [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#cogs)
+2. Use [Cogs](https://docs.nextcord.dev/en/stable/ext/commands/api.html#nextcord.ext.commands.Cog)
 
 3. Save the current directory in the setup function, when commands/tasks/events are called the value of the working directory isn't guaranteed so it is good practice to change the working directory every time a function is called. [EXAMPLE](#wd_ex)
 
@@ -108,7 +108,8 @@ Functions:
 ```python
 # Run a query and get the response in a list format
 def query(query: str) -> list
-
+```
+```python
 # Returns 'True' if table exists else 'False'
 def table_exists(table_name: str) -> bool
 ```
@@ -130,8 +131,8 @@ Hosting your plugin on GitHub is highly reccomended. This allows better discover
 
 ```python
 import os
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 
 localDir: str
 

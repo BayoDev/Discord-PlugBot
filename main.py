@@ -1,7 +1,7 @@
 import utils.config_handler as ch
 import utils.server_handler as sh
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 import logging
 import os
 
@@ -37,7 +37,7 @@ def main():
     #
 
     conf = ch.Config()
-    intents = discord.Intents.default()
+    intents = nextcord.Intents.default()
     bot = commands.Bot(command_prefix=conf.get_data('OPTIONS','PREFIX'),intents=intents)
 
     LOG_ERROR = True if conf.get_data('OPTIONS','LOG_ERROR') == 'True' else False
