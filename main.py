@@ -37,7 +37,7 @@ def main():
     #
 
     conf = ch.Config()
-    intents = nextcord.Intents.default()
+    intents = nextcord.Intents.all()
     bot = commands.Bot(command_prefix=conf.get_data('OPTIONS','PREFIX'),intents=intents)
 
     LOG_ERROR = True if conf.get_data('OPTIONS','LOG_ERROR') == 'True' else False
