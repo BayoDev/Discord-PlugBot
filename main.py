@@ -52,11 +52,13 @@ def main():
     # Import plugins
     #
 
+    current_dir = os.getcwd()
+
     for plug in get_plugins():
         try:
-            os.chdir(f'./plugins/{plug}')
+            os.chdir(f'{current_dir}/plugins/{plug}')
             bot.load_extension(f'plugins.{plug}.main')
-            os.chdir('../..')
+            os.chdir(current_dir)
         except:
             logging.error(f"Unable to load plugin located in './plugins/{plug}'",exc_info=LOG_ERROR)
 
