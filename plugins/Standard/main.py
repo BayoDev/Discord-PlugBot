@@ -3,6 +3,7 @@ from nextcord.ext import commands
 import os
 import json
 import logging
+from utils.config_handler import Config
 
 #https://zira.bot/embedbuilder/
 
@@ -10,10 +11,14 @@ class Standard(commands.Cog):
 
     _bot: commands.bot
     _info_template: nextcord.Embed
+    _LOG_ERROR: bool
 
     def __init__(self,bot) -> None:
         super().__init__()
         self.__init_templates()
+        os.chdir('../..')
+        ch = Config()
+        self._LOG_ERROR = True if ch.get_data('OPTIONS','LOG_ERROR') == 'True' else False
         self._bot = bot
 
     def __init_templates(self) -> bool:
@@ -23,13 +28,13 @@ class Standard(commands.Cog):
             bool: True if everything worked, False if not
         '''
         if not os.path.isfile('Templates/info.json'):
-            logging.error("File 'stats.json' not found in the 'Templates' folder",exc_info=True)
+            logging.error("File 'stats.json' not found in the 'Templates' folder",exc_info=self._LOG_ERROR)
             return False
         try:
             with open('Templates/info.json') as file:
                 self._info_template = nextcord.Embed.from_dict(json.load(file))
         except:
-            logging.error("Unable to open the 'stats.json' template file",exc_info=True)
+            logging.error("Unable to open the 'stats.json' template file",exc_info=self._LOG_ERROR)
             return False
         return True
 
