@@ -1,0 +1,22 @@
+{
+    "title": "INFO",
+    "description": "This bot was created with PlugBot, learn how [here](https://github.com/BayoDev/Discord-PlugBot)",
+    "color": 4321431,
+    "url": "https://discord.com",
+    "author": {
+        "name": "PlugBot",
+        "url": "https://discord.com",
+        "icon_url": ""
+    },
+    "thumbnail": {
+        "url": ""
+    },
+    "image": {
+        "url": ""
+    },
+    "footer": {
+        "text": "",
+        "icon_url": ""
+    },
+    "fields": []
+}
