@@ -7,6 +7,8 @@ from utils.config_handler import Config
 
 #https://zira.bot/embedbuilder/
 
+TESTING_GUILDS = None
+
 class Standard(commands.Cog):
 
     _bot: commands.bot
@@ -36,10 +38,12 @@ class Standard(commands.Cog):
             return False
         return True
 
+    # Commands
+
     @nextcord.slash_command(
         name='ping',
         description='Get ping of the bot',
-        guild_ids=[882689173247655966,968911738399502389]
+        guild_ids=TESTING_GUILDS
     )
     async def ping(self,interaction: nextcord.Interaction): 
         ping = round(self._bot.latency * 1000) 
@@ -48,7 +52,7 @@ class Standard(commands.Cog):
     @nextcord.slash_command(
         name='info',
         description='Get info about the bot',
-        guild_ids=[882689173247655966,968911738399502389]
+        guild_ids=TESTING_GUILDS
     )
     async def info(self,inter: nextcord.Interaction):
         await inter.send(embed=self._info_template,ephemeral=True)
