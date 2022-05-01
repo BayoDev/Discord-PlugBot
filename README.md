@@ -62,7 +62,7 @@ To add the plugin to your bot you just need to download it inside the 'plugins' 
 
 The plugins will be integrated using the official ['load_extension'](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) function of nextcord.
 
-The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a setup function that takes 'bot' as a parameter. Check [this](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) for official docs.
+The plugins must be a folder inside the 'plugins' folder and it must contain a file called 'main.py' with a function called 'setup;' that takes 'bot' and '**kwargs' as a parameter.The 'kwargs' will contain some global configuration values from the config.ini  file. Check [this](https://docs.nextcord.dev/en/stable/ext/commands/extensions.html#primer) for official docs.
 
 The bot includes some utilities that can be used by the plugins.
 
@@ -147,7 +147,7 @@ async def example(ctx):
 
     return
 
-def setup(bot):
+def setup(bot,**kwargs):
     global localDir
     localDir = os.getcwd()
     bot.add_command(example)

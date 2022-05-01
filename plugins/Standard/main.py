@@ -13,12 +13,10 @@ class Standard(commands.Cog):
     _info_template: nextcord.Embed
     _LOG_ERROR: bool
 
-    def __init__(self,bot) -> None:
+    def __init__(self,bot,kwargs) -> None:
         super().__init__()
         self.__init_templates()
-        os.chdir('../..')
-        ch = Config()
-        self._LOG_ERROR = True if ch.get_data('OPTIONS','LOG_ERROR') == 'True' else False
+        self._LOG_ERROR = kwargs['LOG_ERROR']
         self._bot = bot
 
     def __init_templates(self) -> bool:
@@ -55,5 +53,5 @@ class Standard(commands.Cog):
     async def info(self,inter: nextcord.Interaction):
         await inter.send(embed=self._info_template,ephemeral=True)
 
-def setup(bot):
-    bot.add_cog(Standard(bot))
+def setup(bot: commands.Bot, **kwargs):
+    bot.add_cog(Standard(bot,kwargs))

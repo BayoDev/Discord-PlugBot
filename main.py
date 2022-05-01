@@ -57,7 +57,7 @@ def main():
     for plug in get_plugins():
         try:
             os.chdir(f'{current_dir}/plugins/{plug}')
-            bot.load_extension(f'plugins.{plug}.main')
+            bot.load_extension(f'plugins.{plug}.main',extras={'LOG_ERROR':LOG_ERROR})
             os.chdir(current_dir)
         except:
             logging.error(f"Unable to load plugin located in './plugins/{plug}'",exc_info=LOG_ERROR)
