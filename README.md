@@ -80,6 +80,7 @@ The bot includes some utilities that can be used by the plugins.
 
 5. Logging is strongly reccomended using the ['logging'](https://docs.python.org/3/library/logging.html) python package 
 
+6. Make sure to use commands names that aren't too general to avoid conflicts
 
 <a id='dev_sd'></a>
 
