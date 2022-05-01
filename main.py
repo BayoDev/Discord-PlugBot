@@ -6,6 +6,13 @@ import logging
 import os
 
 def get_plugins() -> list:
+    '''Get a list of the plugins
+
+    This function should only be used by the main function
+
+    Return:
+        list: List of paths of the plugins
+    '''
     plugins = []
     for element in os.scandir('./plugins'):
         if element.is_dir() and 'main.py' in os.listdir('./plugins/'+element.name):
@@ -57,7 +64,9 @@ def main():
     for plug in get_plugins():
         try:
             os.chdir(f'{current_dir}/plugins/{plug}')
-            bot.load_extension(f'plugins.{plug}.main',extras={'LOG_ERROR':LOG_ERROR})
+            bot.load_extension(f'plugins.{plug}.main',extras={
+                'LOG_ERROR':LOG_ERROR
+            })
             os.chdir(current_dir)
         except:
             logging.error(f"Unable to load plugin located in './plugins/{plug}'",exc_info=LOG_ERROR)
