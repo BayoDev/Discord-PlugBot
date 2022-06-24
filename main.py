@@ -44,10 +44,16 @@ def main():
     #
 
     conf = ch.Config()
+    config_data = conf.get_config()
     intents = nextcord.Intents.all()
-    bot = commands.Bot(command_prefix=conf.get_data('OPTIONS','PREFIX'),intents=intents)
+    bot = commands.Bot(command_prefix=config_data['OPTIONS']['PREFIX'],intents=intents)
 
-    LOG_ERROR = True if conf.get_data('OPTIONS','LOG_ERROR') == 'True' else False
+    # Preventing plugins from being able to access token directly
+
+    __token = config_data['AUTH']['BOT_TOKEN']
+    config_data['AUTH']['BOT_TOKEN'] = 'None'
+
+    LOG_ERROR = bool(config_data['OPTIONS']['LOG_ERROR'])
 
     #
     # Setup logging
@@ -64,9 +70,7 @@ def main():
     for plug in get_plugins():
         try:
             os.chdir(f'{current_dir}/plugins/{plug}')
-            bot.load_extension(f'plugins.{plug}.main',extras={
-                'LOG_ERROR':LOG_ERROR
-            })
+            bot.load_extension(f'plugins.{plug}.main',extras=dict(config_data))
             os.chdir(current_dir)
         except:
             logging.error(f"Unable to load plugin located in './plugins/{plug}'",exc_info=LOG_ERROR)
@@ -77,7 +81,7 @@ def main():
     
     try:
         logging.info('Bot started')
-        bot.run(conf.get_data('AUTH','BOT_TOKEN'))
+        bot.run(__token)
     except:
         logging.error('An error occurred while starting the bot',exc_info=LOG_ERROR)
 

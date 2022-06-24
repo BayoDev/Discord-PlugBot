@@ -13,9 +13,8 @@ class Config:
         self._parser = cp.ConfigParser()
         self._parser.read(path)
 
-    def get_data(self,section,option):
-        return self._parser.get(section,option)
-
+    def get_config(self):
+        return self._parser
 
     def __standard_config(self):
         config = cp.ConfigParser()
@@ -25,5 +24,15 @@ class Config:
         config['OPTIONS'] = {
             'PREFIX' : '-',
             'LOG_ERROR': 'False'
+        }
+        config['COLORS'] = {
+            'error': '#b80000',
+            'warning': '#ffeb3',
+            'info':'#388e3c'
+        }
+        config['INFO'] = {
+            'bot_name': 'PlugBot',
+            'bot_website': 'https://github.com/BayoDev/Discord-PlugBot',
+            'bot_icon_url': ''
         }
         return config

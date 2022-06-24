@@ -3,11 +3,10 @@ from nextcord.ext import commands
 import os
 import json
 import logging
-from utils.config_handler import Config
 
 #https://zira.bot/embedbuilder/
 
-TESTING_GUILDS = None
+TESTING_GUILDS = [882689173247655966,968911738399502389]
 
 class Standard(commands.Cog):
 
@@ -18,7 +17,7 @@ class Standard(commands.Cog):
     def __init__(self,bot,kwargs) -> None:
         super().__init__()
         self.__init_templates()
-        self._LOG_ERROR = kwargs['LOG_ERROR']
+        self._LOG_ERROR = bool(kwargs['OPTIONS']['LOG_ERROR'])
         self._bot = bot
 
     def __init_templates(self) -> bool:
