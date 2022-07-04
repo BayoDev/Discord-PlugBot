@@ -55,6 +55,10 @@ def main():
 
     LOG_ERROR = bool(config_data['OPTIONS']['LOG_ERROR'])
 
+
+    # Disable standard help command
+    bot.help_command = None
+
     #
     # Setup logging
     #

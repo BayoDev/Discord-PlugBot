@@ -6,17 +6,22 @@ import logging
 
 #https://zira.bot/embedbuilder/
 
-TESTING_GUILDS = [882689173247655966,968911738399502389]
+TESTING_GUILDS = []
+
+
 
 class Standard(commands.Cog):
 
     _bot: commands.bot
     _info_template: nextcord.Embed
     _LOG_ERROR: bool
+    _commands_list: list[nextcord.BaseApplicationCommand]
+    _config: dict
 
     def __init__(self,bot,kwargs) -> None:
         super().__init__()
         self.__init_templates()
+        self._config = kwargs
         self._LOG_ERROR = bool(kwargs['OPTIONS']['LOG_ERROR'])
         self._bot = bot
 
@@ -37,6 +42,12 @@ class Standard(commands.Cog):
             return False
         return True
 
+    # Events Listeners
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        self._commands_list = self._bot.get_all_application_commands()
+
     # Commands
 
     @nextcord.slash_command(
@@ -55,6 +66,42 @@ class Standard(commands.Cog):
     )
     async def info(self,inter: nextcord.Interaction):
         await inter.send(embed=self._info_template,ephemeral=True)
+
+    @nextcord.slash_command(
+        name='help',
+        description='Get commands of the bot',
+        guild_ids=TESTING_GUILDS
+    )
+    async def help(self,inter: nextcord.Interaction):
+
+        dict_emebed = {
+            "color": int(self._config['COLORS']['info'][1:],16),
+            "author": {
+                "name": self._config['INFO']['bot_name'],
+                "url": self._config['INFO']['bot_website'],
+                "icon_url": self._config['INFO']['bot_icon_url']
+            },
+            "title": "Help",
+            "description": "List of commands: ",
+            "fields": []
+        }
+
+
+
+        for i in self._commands_list:
+            dict_emebed['fields'].append(
+                {
+                    "name": i.name,
+                    "value": i.description,
+                    "inline": False
+                }
+            )    
+
+        embed = nextcord.Embed.from_dict(dict_emebed)
+        
+        await inter.send(embed=embed,ephemeral=True)
+
+    
 
 def setup(bot: commands.Bot, **kwargs):
     bot.add_cog(Standard(bot,kwargs))
