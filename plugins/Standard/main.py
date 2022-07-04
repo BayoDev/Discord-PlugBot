@@ -77,7 +77,7 @@ class Standard(commands.Cog):
         dict_emebed = {
             "color": int(self._config['COLORS']['info'][1:],16),
             "author": {
-                "name": self._config['INFO']['bot_name'],
+                "name": '/'+self._config['INFO']['bot_name'],
                 "url": self._config['INFO']['bot_website'],
                 "icon_url": self._config['INFO']['bot_icon_url']
             },
