@@ -113,9 +113,9 @@ class Standard(commands.Cog):
         try:
             await inter.channel.purge(limit=limit)
         except nextcord.Forbidden:
-            inter.send("I don't have the required permissions (Manage messages)",ephemeral=True)
+            await inter.send("I don't have the required permissions (Manage messages)",ephemeral=True)
         except:
-            inter.send("Something went wrong while running the command",ephemeral=True)
+            await inter.send("Something went wrong while running the command",ephemeral=True)
 
 
     
