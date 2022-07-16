@@ -86,8 +86,6 @@ class Standard(commands.Cog):
             "fields": []
         }
 
-
-
         for i in self._commands_list:
             dict_emebed['fields'].append(
                 {
@@ -100,6 +98,25 @@ class Standard(commands.Cog):
         embed = nextcord.Embed.from_dict(dict_emebed)
         
         await inter.send(embed=embed,ephemeral=True)
+
+
+    @nextcord.slash_command(
+        name='clear',
+        description='Clear messages of a channel',
+        guild_ids=TESTING_GUILDS,
+        default_member_permissions=8
+    )
+    async def clear(self,
+        inter: nextcord.Interaction,
+        limit: str = nextcord.SlashOption(name='limit',description='The number of messages that will be deleted',required=False,default=None)
+    ):
+        try:
+            await inter.channel.purge(limit=limit)
+        except nextcord.Forbidden:
+            inter.send("I don't have the required permissions (Manage messages)",ephemeral=True)
+        except:
+            inter.send("Something went wrong while running the command",ephemeral=True)
+
 
     
 
